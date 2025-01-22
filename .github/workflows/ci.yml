@@ -1,25 +1,27 @@
-name: CI of the Project
-
+name: Meri CI katu mai
+ 
 on:
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   build:
-    name: Build NodeJS app
     runs-on: ubuntu-latest
+    name: build checks
 
     steps:
-      - name: Checkout Code
+      - name: checkout to code
         uses: actions/checkout@v3
-      
+
       - name: Setup NodeJS
         uses: actions/setup-node@v3
 
       - name: Install dependencies
         run: npm install
       
+      - name: Mai bekar tests likha code me
+        run: npm test 
+
       - name: Run Typescript compiler to build project
         run: npm run build
-    
