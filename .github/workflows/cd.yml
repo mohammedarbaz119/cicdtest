@@ -3,7 +3,7 @@ name: CI/CD with Docker for Node.js + TypeScript
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
@@ -41,12 +41,12 @@ jobs:
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
+          key: ${{ secrets.EC2_KEY }}
           port: 22
           script: |
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/ci-cd-tutorial:latest
             sudo docker stop ci-cd-tutorial || true
             sudo docker rm ci-cd-tutorial || true
-            sudo docker run -d --name ci-cd-tutorial -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/ci-cd-tutorial:latest
+            sudo docker run -d --name ci-cd-tutorial -p 80:8080 ${{ secrets.DOCKER_USERNAME }}/ci-cd-tutorial:latest
 
 # Note: Replace ci-cd-tutorial with your docker repo application's name
