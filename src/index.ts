@@ -8,7 +8,7 @@ app.get("/", (req, res) => {
 })
 
 app.get("/product", (req, res) => {
-  res.send("This is Product Page");
+  res.send("This is Product Page changed");
 })
 
 app.get("/dekho",(req,res)=>{
